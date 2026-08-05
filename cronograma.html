@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Cronograma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/cronograma.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <div id="schedule-root" class="schedule-page">
+      <header class="schedule-header">
+        <span class="brand-mini"><i class="fa-solid fa-meteor"></i> CronoVest</span>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <button id="btn-favorite-schedule" class="icon-btn" type="button" title="Adicionar aos favoritos">
+            <i class="fa-solid fa-star"></i>
+          </button>
+          <button id="btn-delete-schedule" class="icon-btn" type="button" title="Excluir cronograma">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+          <button id="btn-voltar" class="btn-ghost" type="button">
+            <i class="fa-solid fa-arrow-left"></i> Trocar cronograma
+          </button>
+        </div>
+      </header>
+
+      <h1 id="schedule-name">Cronograma</h1>
+      <p class="schedule-subtitle">Marque as matérias concluídas e acompanhe seu progresso por dia.</p>
+
+      <div class="day-track-wrapper">
+        <div class="day-track" id="day-track"></div>
+      </div>
+
+      <section class="subjects-card" id="subjects-card">
+        <div class="subjects-card-header">
+          <h2 id="current-day-label">Segunda</h2>
+          <button id="btn-toggle-edit" class="btn-edit-toggle" type="button">
+            <i class="fa-solid fa-pen"></i><span>Editar</span>
+          </button>
+        </div>
+
+        <ul class="subject-list" id="subject-list"></ul>
+
+        <div id="add-subject-container"></div>
+
+        <div class="progress-section">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="progress-label" id="progress-label"></span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/cronograma.js"></script>
+</body>
+</html>

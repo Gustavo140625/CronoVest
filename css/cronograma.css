@@ -1,0 +1,362 @@
+/* ===================================================================
+   cronograma.css
+   Estilos exclusivos das páginas de cronograma (prontos e
+   personalizado). Os tokens de cor/tipografia vêm de style.css.
+   =================================================================== */
+
+.schedule-page {
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+
+.schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 6vw 0;
+}
+
+.schedule-header .brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.schedule-header .brand-mini i { color: var(--purple-soft); }
+
+#schedule-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+  margin: 30px auto 6px;
+  max-width: 900px;
+  padding: 0 6vw;
+}
+
+.schedule-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 34px;
+}
+
+/* ---------- Trilha de dias ("constelação" da semana) ---------- */
+.day-track-wrapper {
+  max-width: 900px;
+  margin: 0 auto 28px;
+  padding: 0 6vw;
+  position: relative;
+}
+
+.day-track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 18px 16px 22px;
+  position: relative;
+  scrollbar-width: thin;
+}
+
+.day-track::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 25px;
+  height: 1px;
+  background: var(--border-subtle);
+  z-index: 0;
+}
+
+.day-pill {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  min-width: 78px;
+}
+
+.day-pill-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  transition: all 0.25s ease;
+}
+
+.day-pill-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: color 0.25s ease;
+}
+
+.day-pill.is-active .day-pill-dot {
+  background: var(--purple-primary);
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 14px var(--purple-primary);
+  transform: scale(1.2);
+}
+
+.day-pill.is-active .day-pill-label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.day-pill.is-complete .day-pill-dot {
+  background: var(--success);
+  border-color: var(--success);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+}
+
+.day-pill:hover .day-pill-label { color: var(--accent-glow); }
+
+/* ---------- Card de matérias ---------- */
+.subjects-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 30px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.subjects-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.subjects-card-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.btn-edit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-glow);
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-edit-toggle:hover {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: var(--purple-soft);
+}
+
+.subjects-card.edit-mode .btn-edit-toggle {
+  background: var(--success);
+  border-color: var(--success);
+  color: #06281C;
+}
+
+/* ---------- Lista de matérias ---------- */
+.subject-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.subject-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.subject-item.is-done { opacity: 0.55; }
+
+.subject-item:hover { border-color: var(--purple-soft); }
+
+.subject-check {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.checkbox-input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.custom-checkbox {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  border-radius: 7px;
+  border: 1.5px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.checkbox-input:checked + .custom-checkbox {
+  background: linear-gradient(135deg, var(--purple-primary), var(--purple-deep));
+  border-color: var(--purple-primary);
+  color: #fff;
+}
+
+.subject-name {
+  font-size: 0.96rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subject-item.is-done .subject-name { text-decoration: line-through; color: var(--text-muted); }
+
+.subject-rename-input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--purple-soft);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.subject-actions {
+  display: none;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.subjects-card.edit-mode .subject-actions { display: flex; }
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover { border-color: var(--purple-soft); color: var(--accent-glow); }
+
+.btn-remove-subject:hover { border-color: var(--danger); color: var(--danger); }
+
+.empty-state {
+  list-style: none;
+  text-align: center;
+  padding: 36px 12px;
+  color: var(--text-muted);
+}
+
+.empty-state i { font-size: 1.6rem; color: var(--purple-soft); margin-bottom: 10px; display: block; }
+
+/* ---------- Formulário de adicionar matéria ---------- */
+.add-subject-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.add-subject-input {
+  flex: 1;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+}
+
+.add-subject-input:focus { border-color: var(--purple-soft); }
+
+.btn-add-subject {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(120deg, var(--accent-glow), var(--purple-primary));
+  border: none;
+  color: var(--bg-base);
+  font-weight: 600;
+  padding: 0 18px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+}
+
+.btn-add-subject:hover { transform: translateY(-2px); }
+
+/* ---------- Barra de progresso ---------- */
+.progress-section { margin-top: 26px; }
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--purple-deep), var(--purple-primary), var(--accent-glow));
+  transition: width 0.4s ease;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+}
+
+.progress-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 640px) {
+  .subjects-card { padding: 24px 18px; }
+  .subjects-card-header { flex-wrap: wrap; gap: 12px; }
+  .add-subject-form { flex-direction: column; }
+  .btn-add-subject { justify-content: center; padding: 12px; }
+}
+
+.day-track {
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple-primary) var(--bg-base);
+}
+
+.day-track::-webkit-scrollbar { height: 6px; }
+.day-track::-webkit-scrollbar-track { background: var(--bg-base); border-radius: 999px; }
+.day-track::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 999px; }

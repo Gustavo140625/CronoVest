@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Metas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <header class="page-intro">
+      <div>
+        <h1>Metas de estudo</h1>
+        <p>Crie metas e o CronoVest acompanha o progresso automaticamente a partir dos seus cronogramas.</p>
+      </div>
+    </header>
+
+    <section class="page-section">
+      <div class="goal-form-card">
+        <h2 class="section-title" style="margin-bottom:18px;"><i class="fa-solid fa-bullseye"></i> Nova meta</h2>
+        <form id="form-add-goal">
+          <div class="field-group">
+            <label for="goal-description">Descrição da meta</label>
+            <input type="text" id="goal-description" maxlength="60" placeholder="Ex: Concluir 10 matérias nesta semana" required>
+          </div>
+
+          <div class="goal-form-row">
+            <div class="field-group">
+              <label for="goal-type">Tipo de meta</label>
+              <select id="goal-type" style="width:100%;">
+                <option value="subjects">Concluir X matérias</option>
+                <option value="schedule">Finalizar um cronograma até uma data</option>
+              </select>
+            </div>
+            <div class="field-group" id="goal-target-field">
+              <label for="goal-target">Quantidade de matérias</label>
+              <input type="number" id="goal-target" min="1" max="500" value="10">
+            </div>
+          </div>
+
+          <div class="goal-form-row" id="goal-schedule-fields" style="display:none;">
+            <div class="field-group">
+              <label for="goal-schedule">Cronograma</label>
+              <select id="goal-schedule" style="width:100%;"></select>
+            </div>
+            <div class="field-group">
+              <label for="goal-deadline">Data limite</label>
+              <input type="date" id="goal-deadline">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Criar meta</button>
+        </form>
+      </div>
+
+      <div id="goals-list"></div>
+    </section>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/metas.js"></script>
+</body>
+</html>

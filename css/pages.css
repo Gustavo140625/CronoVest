@@ -1,0 +1,254 @@
+/* ===================================================================
+   pages.css
+   Ajustes específicos de dashboard, perfil e configurações — tudo
+   que não é genérico o bastante para entrar em components.css.
+   =================================================================== */
+
+/* ---------- Dashboard: banner de boas-vindas ---------- */
+.welcome-banner {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  padding: 34px 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: linear-gradient(120deg, rgba(139,92,246,0.16), transparent 70%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.welcome-banner h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 6px;
+}
+
+.welcome-banner p { color: var(--text-muted); font-size: 0.92rem; max-width: 420px; }
+
+/* ---------- Perfil: cabeçalho com avatar grande ---------- */
+.profile-header {
+  max-width: 1100px;
+  margin: 0 auto 34px;
+  padding: 38px 6vw 0;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.avatar-upload {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 auto;
+}
+
+.avatar-upload .avatar-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-primary), var(--purple-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  overflow: hidden;
+  border: 2px solid var(--border-subtle);
+  box-shadow: var(--shadow-glow);
+}
+
+.avatar-upload .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+.avatar-upload .avatar-edit-btn {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--purple-primary);
+  border: 2px solid var(--bg-base);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.profile-header-info h1 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 6px; }
+.profile-header-info p { color: var(--text-muted); font-size: 0.88rem; }
+.profile-header-info .profile-quote {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--accent-glow);
+  font-style: italic;
+}
+
+/* ---------- Formulários de configuração / edição de perfil ---------- */
+.settings-card {
+  max-width: 700px;
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.settings-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-card h2 i { color: var(--purple-soft); }
+
+.settings-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.danger-zone { border-color: rgba(248, 113, 113, 0.35); }
+.danger-zone h2 i { color: var(--danger); }
+
+.danger-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.danger-action:first-of-type { border-top: none; padding-top: 0; }
+
+.danger-action p { font-size: 0.88rem; }
+.danger-action span { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.theme-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--purple-primary), var(--bg-base));
+  border: 1px solid var(--border-subtle);
+}
+
+.theme-option.is-locked { opacity: 0.55; }
+
+/* ---------- Goal form (metas.html) ---------- */
+.goal-form-card {
+  max-width: 700px;
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  margin-bottom: 30px;
+}
+
+.goal-form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 640px) {
+  .welcome-banner, .profile-header { padding-left: 5vw; padding-right: 5vw; }
+  .settings-row, .goal-form-row { grid-template-columns: 1fr; }
+  .profile-header { flex-direction: column; text-align: center; }
+}
+
+/* ---------- Dashboard: hero de sequência + grid variado ---------- */
+.welcome-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: 4vw;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+#dashboard-stats {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+#dashboard-stats .stat-card.is-hero {
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(139,92,246,0.18), var(--bg-elevated));
+  border-color: var(--purple-soft);
+}
+
+.stat-card.is-hero .stat-card-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 1.5rem;
+  flex: 0 0 auto;
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
+}
+
+.stat-card.is-hero .stat-card-value {
+  font-size: 2.6rem;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+.stat-card.is-hero .stat-card-label {
+  font-size: 0.88rem;
+}
+
+@media (max-width: 640px) {
+  #dashboard-stats .stat-card.is-hero { grid-column: span 1; flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Perfil: avatar e cards mais compactos no mobile ---------- */
+@media (max-width: 640px) {
+  .avatar-upload, .avatar-upload .avatar-preview {
+    width: 76px;
+    height: 76px;
+  }
+
+  .profile-header-info h1 { font-size: 1.25rem; }
+
+  #profile-stats { gap: 12px; }
+
+  #profile-stats .stat-card { padding: 18px; }
+}
+
+/* ---------- Perfil: destaque no card de matérias concluídas ---------- */
+#profile-stats .stat-card.is-hero {
+  background: linear-gradient(135deg, rgba(139,92,246,0.18), var(--bg-elevated));
+  border-color: var(--purple-soft);
+}
+
+#profile-stats .stat-card.is-hero .stat-card-value {
+  font-size: 2.2rem;
+  text-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+}

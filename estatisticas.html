@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Estatísticas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <header class="page-intro">
+      <div>
+        <h1>Estatísticas</h1>
+        <p>Um raio-x completo da sua rotina de estudos, calculado automaticamente a partir dos seus cronogramas.</p>
+      </div>
+    </header>
+
+    <section class="page-section">
+      <div class="stat-grid" id="full-stats-grid"></div>
+    </section>
+
+    <section class="page-section">
+      <div class="settings-card">
+        <h2><i class="fa-solid fa-chart-simple"></i> Conclusão geral</h2>
+        <div class="progress-section" style="margin-top:0;">
+          <div class="progress-track">
+            <div class="progress-fill" id="overall-progress-fill"></div>
+          </div>
+          <span class="progress-label" id="overall-progress-label"></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/estatisticas.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Criar cronograma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <main class="create-page">
+      <div class="create-card">
+        <div class="choice-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h1>Dê um nome ao seu cronograma</h1>
+        <p>Esse nome vai identificar seu cronograma personalizado em qualquer lugar do CronoVest.</p>
+
+        <form id="form-criar-cronograma" novalidate>
+          <div class="field-group">
+            <label for="input-nome-cronograma">Nome do cronograma</label>
+            <input
+              type="text"
+              id="input-nome-cronograma"
+              placeholder="Ex: Vestibular Medicina"
+              maxlength="40"
+              autocomplete="off"
+            >
+            <span class="field-error" id="erro-nome-cronograma"></span>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            Criar cronograma <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <p class="create-examples">
+          <span>Vestibular Medicina</span>
+          <span>Estudos 2026</span>
+          <span>Concurso Público</span>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

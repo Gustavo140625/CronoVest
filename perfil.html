@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Meu Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <header class="profile-header">
+      <div class="avatar-upload">
+        <div class="avatar-preview" id="avatar-preview"><i class="fa-solid fa-user"></i></div>
+        <button class="avatar-edit-btn" id="btn-change-avatar" type="button" title="Alterar foto">
+          <i class="fa-solid fa-camera"></i>
+        </button>
+        <input type="file" id="input-avatar" accept="image/*" hidden>
+      </div>
+      <div class="profile-header-info">
+        <h1 id="profile-name-display">Estudante</h1>
+        <p id="profile-objective-display">Defina seu objetivo de estudo</p>
+        <p class="profile-quote" id="profile-quote-display"></p>
+      </div>
+    </header>
+
+    <section class="page-section">
+      <div class="stat-grid" id="profile-stats"></div>
+    </section>
+
+    <section class="page-section">
+      <div class="settings-card">
+        <h2><i class="fa-solid fa-pen"></i> Editar perfil</h2>
+        <form id="form-edit-profile">
+          <div class="settings-row">
+            <div class="field-group">
+              <label for="input-profile-name">Nome</label>
+              <input type="text" id="input-profile-name" maxlength="40" placeholder="Seu nome">
+            </div>
+            <div class="field-group">
+              <label for="input-profile-objective">Objetivo principal</label>
+              <input type="text" id="input-profile-objective" maxlength="60" placeholder="Ex: Aprovação em Medicina">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="input-profile-quote">Frase motivacional</label>
+            <input type="text" id="input-profile-quote" maxlength="80" placeholder="Ex: Um passo por dia já é progresso.">
+          </div>
+          <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Salvar alterações</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Conquistas</h2>
+      <div class="achievement-grid" id="achievements-grid"></div>
+    </section>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>

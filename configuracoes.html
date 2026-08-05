@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Configurações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <header class="page-intro">
+      <div>
+        <h1>Configurações</h1>
+        <p>Gerencie sua conta, sua aparência e os dados salvos no seu navegador.</p>
+      </div>
+    </header>
+
+    <section class="page-section">
+      <div class="settings-card">
+        <h2><i class="fa-solid fa-user-pen"></i> Conta</h2>
+        <form id="form-settings-account">
+          <div class="settings-row">
+            <div class="field-group">
+              <label for="settings-input-name">Nome de usuário</label>
+              <input type="text" id="settings-input-name" maxlength="40">
+            </div>
+            <div class="field-group">
+              <label>Foto de perfil</label>
+              <button type="button" id="settings-btn-avatar" class="btn-ghost">
+                <i class="fa-solid fa-camera"></i> Alterar foto
+              </button>
+              <input type="file" id="settings-input-avatar" accept="image/*" hidden>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Salvar</button>
+        </form>
+      </div>
+
+      <div class="settings-card">
+        <h2><i class="fa-solid fa-palette"></i> Aparência</h2>
+        <div class="theme-option">
+          <div class="theme-swatch"></div>
+          <div>
+            <p style="font-weight:600;">Nebulosa Roxa (atual)</p>
+            <span style="font-size:0.8rem; color:var(--text-muted);">O tema preto e roxo padrão do CronoVest.</span>
+          </div>
+        </div>
+        <div class="theme-option is-locked" style="margin-top:12px;">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#334155,#0f172a);"></div>
+          <div>
+            <p style="font-weight:600;">Mais temas em breve</p>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Novas opções de cor chegarão em futuras atualizações.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-card danger-zone">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> Zona de perigo</h2>
+
+        <div class="danger-action">
+          <p>Limpar progresso
+            <span>Desmarca todas as matérias concluídas, sem apagar seus cronogramas.</span>
+          </p>
+          <button id="btn-clear-progress" class="btn-danger" type="button">Limpar</button>
+        </div>
+
+        <div class="danger-action">
+          <p>Restaurar cronogramas prontos
+            <span>Recria o ENEM e a FUVEST com as matérias padrão, do zero.</span>
+          </p>
+          <button id="btn-restore-schedules" class="btn-danger" type="button">Restaurar</button>
+        </div>
+
+        <div class="danger-action">
+          <p>Excluir todos os dados
+            <span>Remove permanentemente tudo o que o CronoVest salvou neste navegador.</span>
+          </p>
+          <button id="btn-erase-all" class="btn-danger" type="button">Excluir tudo</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/configuracoes.js"></script>
+</body>
+</html>

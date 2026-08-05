@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Calendário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <header class="page-intro">
+      <div>
+        <h1>Calendário de estudos</h1>
+        <p>Os dias em que você concluiu pelo menos uma matéria ficam destacados em roxo.</p>
+      </div>
+    </header>
+
+    <section class="page-section">
+      <div class="settings-card" style="max-width:780px;">
+        <div class="calendar-nav">
+          <button id="btn-prev-month" class="btn-ghost" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+          <h2 id="calendar-month-label">Mês</h2>
+          <button id="btn-next-month" class="btn-ghost" type="button"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-grid" id="calendar-weekdays-row"></div>
+        <div class="calendar-grid" id="calendar-days-grid" style="margin-top:8px;"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/calendario.js"></script>
+</body>
+</html>

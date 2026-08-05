@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronoVest — Escolha seu cronograma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body>
+  <div class="stars-layer"></div>
+  <div id="nav-root"></div>
+
+  <div class="app-content">
+    <main class="choice-page">
+      <div class="choice-intro">
+        <h1>Qual caminho você vai seguir?</h1>
+        <p>Escolha um cronograma pronto para o seu vestibular ou monte o seu do zero.</p>
+      </div>
+
+      <div class="choice-grid">
+        <article id="card-enem" class="choice-card">
+          <div class="choice-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h2>ENEM</h2>
+          <p>Cronograma semanal pronto com as disciplinas mais cobradas no Enem.</p>
+          <span class="choice-action">Abrir cronograma <i class="fa-solid fa-arrow-right"></i></span>
+        </article>
+
+        <article id="card-fuvest" class="choice-card">
+          <div class="choice-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <h2>FUVEST</h2>
+          <p>Cronograma semanal pronto, focado no estilo de prova da Fuvest.</p>
+          <span class="choice-action">Abrir cronograma <i class="fa-solid fa-arrow-right"></i></span>
+        </article>
+
+        <article id="card-criar" class="choice-card is-create">
+          <div class="choice-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h2>Criar cronograma</h2>
+          <p>Monte um cronograma totalmente seu, com as matérias e dias que quiser.</p>
+          <span class="choice-action">Começar do zero <i class="fa-solid fa-arrow-right"></i></span>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
