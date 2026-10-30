@@ -20,15 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     .map(label => `<div class="calendar-weekday">${label}</div>`)
     .join('');
 
-  document.getElementById('btn-prev-month').addEventListener('click', () => {
-    calendarViewDate.setMonth(calendarViewDate.getMonth() - 1);
-    renderCalendar();
-  });
+document.getElementById('btn-prev-month').addEventListener('click', () => {
+  calendarViewDate.setDate(1);
+  calendarViewDate.setMonth(calendarViewDate.getMonth() - 1);
+  renderCalendar();
+});
 
-  document.getElementById('btn-next-month').addEventListener('click', () => {
-    calendarViewDate.setMonth(calendarViewDate.getMonth() + 1);
-    renderCalendar();
-  });
+document.getElementById('btn-next-month').addEventListener('click', () => {
+  calendarViewDate.setDate(1);
+  calendarViewDate.setMonth(calendarViewDate.getMonth() + 1);
+  renderCalendar();
+});
 
   renderCalendar();
 });
