@@ -151,18 +151,44 @@ function removeSubject(scheduleId, dayKey, subjectId) {
 
 /** Alterna o estado concluído/pendente e ajusta o log de conclusão do dia
  *  (usado por sequências/streaks e pela conquista "matéria concluída"). */
+/**
+ * Alterna a conclusão da matéria e atualiza o histórico
+ * na data em que ela foi concluída.
+ */
 function toggleSubjectDone(scheduleId, dayKey, subjectId) {
   const data = loadData();
-  const subject = data.schedules[scheduleId]?.days[dayKey].find(s => s.id === subjectId);
+
+  const subject = data.schedules[scheduleId]?.days[dayKey]
+    ?.find(s => s.id === subjectId);
+
   if (!subject) return;
 
-  subject.done = !subject.done;
+  if (!subject.done) {
+    // Marca como concluída e guarda a data.
+    const key = todayKey();
 
-  const key = todayKey();
-  const delta = subject.done ? 1 : -1;
-  const next = Math.max(0, (data.completionLog[key] || 0) + delta);
-  if (next === 0) delete data.completionLog[key];
-  else data.completionLog[key] = next;
+    subject.done = true;
+    subject.completedOn = key;
+
+    data.completionLog[key] = (data.completionLog[key] || 0) + 1;
+  } else {
+    // Desmarca e desconta da data original.
+    const key = subject.completedOn;
+
+    subject.done = false;
+
+    if (key) {
+      const next = Math.max(0, (data.completionLog[key] || 0) - 1);
+
+      if (next === 0) {
+        delete data.completionLog[key];
+      } else {
+        data.completionLog[key] = next;
+      }
+    }
+
+    delete subject.completedOn;
+  }
 
   saveData(data);
 }
