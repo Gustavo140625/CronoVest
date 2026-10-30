@@ -80,8 +80,8 @@ function getCurrentStreak() {
   // Se hoje ainda não estudou, a sequência pode ter parado ontem.
   if (!log[todayKey()]) cursor.setDate(cursor.getDate() - 1);
 
-  while (true) {
-    const key = cursor.toISOString().slice(0, 10);
+while (true) {
+  const key = todayKeyFrom(cursor);
     if (log[key] > 0) {
       streak += 1;
       cursor.setDate(cursor.getDate() - 1);

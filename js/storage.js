@@ -158,7 +158,7 @@ function toggleSubjectDone(scheduleId, dayKey, subjectId) {
 
   subject.done = !subject.done;
 
-  const key = todayKeyFrom(data);
+  const key = todayKey();
   const delta = subject.done ? 1 : -1;
   const next = Math.max(0, (data.completionLog[key] || 0) + delta);
   if (next === 0) delete data.completionLog[key];
@@ -307,10 +307,15 @@ function searchSubjects(term) {
 
 /* ---------- Log de conclusão (streaks) ---------- */
 function todayKey() {
-  return todayKeyFrom(loadData());
+  return todayKeyFrom();
 }
-function todayKeyFrom() {
-  return new Date().toISOString().slice(0, 10);
+
+function todayKeyFrom(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
 
 function getCompletionLog() {
