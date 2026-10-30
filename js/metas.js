@@ -92,7 +92,7 @@ function renderGoalsList() {
   container.innerHTML = goals.map(goal => {
     const progress = computeGoalProgress(goal);
     const meta = goal.type === 'schedule'
-      ? `Vinculada a "${escapeHtml(getSchedule(goal.scheduleId)?.name || 'cronograma removido')}"${goal.deadline ? ` · até ${new Date(goal.deadline).toLocaleDateString('pt-BR')}` : ''}`
+      ? `Vinculada a "${escapeHtml(getSchedule(goal.scheduleId)?.name || 'cronograma removido')}"${goal.deadline ? ` · até ${new Date(`${goal.deadline}T00:00:00`).toLocaleDateString('pt-BR')}` : ''}`
       : `Meta de matérias concluídas`;
 
     return `
