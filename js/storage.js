@@ -23,6 +23,7 @@ function getEmptyData() {
     recentSchedules: [],
     profile: { name: '', objective: '', quote: '', avatar: null, createdAt: new Date().toISOString() },
     completionLog: {},
+    weekHistory: [],
     achievements: [],
     goals: [],
   };
@@ -174,7 +175,7 @@ function toggleSubjectDone(scheduleId, dayKey, subjectId) {
   } else {
     // Desmarca e desconta da data original.
     const key = subject.completedOn;
-
+f
     subject.done = false;
 
     if (key) {
@@ -277,12 +278,31 @@ function updateProfile(partial) {
 /* ---------- Progresso / dados perigosos (Configurações) ---------- */
 function clearAllProgress() {
   const data = loadData();
+  const now = new Date().toISOString();
+
   Object.values(data.schedules).forEach(schedule => {
-    WEEK_DAYS.forEach(d => {
-      (schedule.days[d.key] || []).forEach(s => { s.done = false; });
+    WEEK_DAYS.forEach(day => {
+      (schedule.days[day.key] || []).forEach(subject => {
+        subject.done = false;
+        delete subject.completedOn;
+      });
     });
+
+    schedule.weekNumber = 1;
+    schedule.weekStartedAt = now;
   });
+
+  // Apaga o histórico de conclusões e semanas encerradas.
   data.completionLog = {};
+  data.weekHistory = [];
+
+  // Reinicia a referência das metas de quantidade.
+  data.goals.forEach(goal => {
+    if (goal.type === 'subjects') {
+      goal.startCount = 0;
+    }
+  });
+
   saveData(data);
 }
 
@@ -370,4 +390,51 @@ function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = String(str ?? '');
   return div.innerHTML;
+}
+/* ---------- Renovação semanal ---------- */
+
+function startNewWeek(scheduleId) {
+  const data = loadData();
+  const schedule = data.schedules[scheduleId];
+
+  if (!schedule) return false;
+
+  const subjects = WEEK_DAYS.flatMap(
+    day => schedule.days[day.key] || []
+  );
+
+  // Evita encerrar uma semana vazia ou sem conclusões.
+  if (!subjects.some(subject => subject.done)) {
+    return false;
+  }
+
+  const now = new Date().toISOString();
+
+  // Guarda uma cópia independente da semana encerrada.
+  const archivedWeek = {
+    id: generateId('week'),
+    scheduleId: schedule.id,
+    scheduleName: schedule.name,
+    weekNumber: schedule.weekNumber || 1,
+    startedAt: schedule.weekStartedAt || null,
+    endedAt: now,
+    days: JSON.parse(JSON.stringify(schedule.days)),
+  };
+
+  data.weekHistory.push(archivedWeek);
+
+  // Prepara as mesmas matérias para uma nova semana.
+  subjects.forEach(subject => {
+    subject.done = false;
+    delete subject.completedOn;
+  });
+
+  schedule.weekNumber = (schedule.weekNumber || 1) + 1;
+  schedule.weekStartedAt = now;
+  schedule.lastDay = 'segunda';
+
+  // O completionLog permanece preservado.
+  saveData(data);
+
+  return true;
 }

@@ -55,7 +55,7 @@ function setupDangerZone() {
   document.getElementById('btn-clear-progress').addEventListener('click', () => {
     confirmAction({
       title: 'Limpar todo o progresso?',
-      message: 'Todas as matérias concluídas serão desmarcadas em todos os seus cronogramas. Esta ação não poderá ser desfeita.',
+      message: 'Todas as matérias serão desmarcadas, as semanas arquivadas e o histórico de estudos serão apagados, e o progresso das metas será reiniciado. Seus cronogramas e metas serão mantidos. Esta ação não poderá ser desfeita.',
       confirmLabel: 'Limpar progresso',
       onConfirm: () => {
         clearAllProgress();

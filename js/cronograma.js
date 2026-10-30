@@ -33,6 +33,8 @@ function initSchedulePage() {
   document.getElementById('schedule-name').textContent = schedule.name;
   renderFavoriteButton();
   bindDeleteScheduleButton();
+  bindNewWeekButton();
+
 
   renderDaySelector();
   renderDayContent();
@@ -313,4 +315,66 @@ function bindStaticEvents() {
 /** Garante que activeSchedule reflita o que está realmente salvo. */
 function refreshScheduleFromStorage() {
   activeSchedule = getSchedule(activeSchedule.id);
+}
+
+/* ---------- Botão de renovação semanal ---------- */
+
+function bindNewWeekButton() {
+  const backBtn = document.getElementById('btn-voltar');
+
+  if (!backBtn || document.getElementById('btn-new-week')) return;
+
+  const button = document.createElement('button');
+  button.id = 'btn-new-week';
+  button.type = 'button';
+  button.className = 'btn-ghost';
+  button.textContent = 'Iniciar nova semana';
+
+  backBtn.before(button);
+
+  button.addEventListener('click', () => {
+    confirmAction({
+      title: 'Iniciar uma nova semana?',
+      message:
+        'A semana atual será arquivada, inclusive se estiver incompleta. ' +
+        'As matérias deste cronograma serão desmarcadas para você ' +
+        'estudá-las novamente. Seu histórico será preservado.',
+      confirmLabel: 'Iniciar nova semana',
+      danger: false,
+
+      onConfirm: () => {
+        try {
+          const started = startNewWeek(activeSchedule.id);
+
+          if (!started) {
+            notify(
+              'Conclua pelo menos uma matéria antes de iniciar outra semana.',
+              'info'
+            );
+            return;
+          }
+
+          refreshScheduleFromStorage();
+
+          currentDayKey = 'segunda';
+          editMode = false;
+
+          renderDaySelector();
+          renderDayContent();
+
+          notify(
+            `Semana ${activeSchedule.weekNumber} iniciada! Histórico preservado.`,
+            'success'
+          );
+        } catch (error) {
+          console.error('Erro ao iniciar nova semana:', error);
+
+          notify(
+            'Não foi possível salvar a nova semana. Tente novamente.',
+            'danger'
+          );
+        }
+      },
+    });
+  });
 }

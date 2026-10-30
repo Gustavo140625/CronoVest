@@ -119,12 +119,49 @@ function getLastUsedScheduleEntry() {
  *  - 'schedule': progresso geral (%) do cronograma vinculado à meta. */
 function computeGoalProgress(goal) {
   if (goal.type === 'schedule') {
-    const { percent } = calculateScheduleProgress(goal.scheduleId);
-    return { current: percent, target: 100, percent, done: percent >= 100 };
-  }
+  const data = loadData();
+
+  const finishedArchivedWeek = (data.weekHistory || []).some(week => {
+    // Considera apenas o cronograma vinculado à meta.
+    if (week.scheduleId !== goal.scheduleId) return false;
+
+    // Não conta semanas encerradas antes da criação da meta.
+    if (new Date(week.endedAt) < new Date(goal.createdAt)) {
+      return false;
+    }
+
+    const subjects = WEEK_DAYS.flatMap(
+      day => week.days[day.key] || []
+    );
+
+    return subjects.length > 0 &&
+      subjects.every(subject => subject.done);
+  });
+
+  const progress = calculateScheduleProgress(goal.scheduleId);
+
+  const finishedCurrentWeek =
+    progress.total > 0 && progress.done === progress.total;
+
+  const done = finishedArchivedWeek || finishedCurrentWeek;
+
+  const percent = done
+    ? 100
+    : Math.min(99, progress.percent);
+
+  return {
+    current: percent,
+    target: 100,
+    percent,
+    done,
+  };
+}
 
   // type === 'subjects'
-  const current = Math.max(0, countCompletedSubjects() - (goal.startCount || 0));
+  const current = Math.max(
+  0,
+  countHistoricalCompletedSubjects() - (goal.startCount || 0)
+);
   const percent = goal.target > 0 ? Math.min(100, Math.round((current / goal.target) * 100)) : 0;
   return { current, target: goal.target, percent, done: current >= goal.target };
 }
@@ -144,4 +181,28 @@ function computeAllStats() {
     bestStreak: getBestStreak(),
     hasCustomSchedule: getAllSchedulesArray().some(s => s.type === 'custom'),
   };
+}
+/**
+ * Conta as conclusões guardadas nas semanas encerradas.
+ */
+function countArchivedCompletedSubjects() {
+  const data = loadData();
+
+  return (data.weekHistory || []).reduce((total, week) => {
+    const completed = WEEK_DAYS.reduce((sum, day) => {
+      const subjects = week.days[day.key] || [];
+
+      return sum + subjects.filter(subject => subject.done).length;
+    }, 0);
+
+    return total + completed;
+  }, 0);
+}
+
+/**
+ * Soma as conclusões das semanas encerradas
+ * com as marcações atuais dos cronogramas.
+ */
+function countHistoricalCompletedSubjects() {
+  return countArchivedCompletedSubjects() + countCompletedSubjects();
 }

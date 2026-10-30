@@ -51,7 +51,7 @@ function setupGoalForm(form) {
         description,
         type: 'subjects',
         target,
-        startCount: countCompletedSubjects(),
+        startCount: countHistoricalCompletedSubjects(),
       };
     } else {
       const scheduleId = document.getElementById('goal-schedule').value;
