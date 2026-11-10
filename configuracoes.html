@@ -47,23 +47,26 @@
 
       <div class="settings-card">
         <h2><i class="fa-solid fa-palette"></i> Aparência</h2>
-        <div class="theme-option">
-          <div class="theme-swatch"></div>
-          <div>
-            <p style="font-weight:600;">Nebulosa Roxa (atual)</p>
-            <span style="font-size:0.8rem; color:var(--text-muted);">O tema preto e roxo padrão do CronoVest.</span>
-          </div>
-        </div>
-        <div class="theme-option is-locked" style="margin-top:12px;">
-          <div class="theme-swatch" style="background:linear-gradient(135deg,#334155,#0f172a);"></div>
-          <div>
-            <p style="font-weight:600;">Mais temas em breve</p>
-            <span style="font-size:0.8rem; color:var(--text-muted);">Novas opções de cor chegarão em futuras atualizações.</span>
-          </div>
-        </div>
+<label class="theme-option theme-choice">
+  <span class="theme-swatch theme-swatch-dark" aria-hidden="true"></span>
+  <span class="theme-choice-text">
+    <strong>Nebulosa Roxa</strong>
+    <small>Fundo escuro com detalhes em roxo</small>
+  </span>
+  <input type="radio" name="site-theme" value="dark" checked>
+</label>
 
+<label class="theme-option theme-choice">
+  <span class="theme-swatch theme-swatch-light" aria-hidden="true"></span>
+  <span class="theme-choice-text">
+    <strong>Lilás Claro</strong>
+    <small>Fundo branco com detalhes em roxo</small>
+  </span>
+  <input type="radio" name="site-theme" value="light">
+</label>
+      </div><!-- fecha o card Aparência -->
     </section>
-  </div>
+  </div><!-- fecha .app-content -->
 
   <script src="js/storage.js"></script>
   <script src="js/data.js"></script>

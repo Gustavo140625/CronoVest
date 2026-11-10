@@ -528,3 +528,85 @@ body::after {
   .hero-orbit { width: 170px; height: 170px; }
   .create-card { padding: 32px 24px; }
 }
+.theme-choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.theme-choice:has(input:checked) {
+  outline: 2px solid #a78bfa;
+  outline-offset: -2px;
+}
+
+.theme-choice-text {
+  flex: 1;
+}
+
+.theme-choice-text small {
+  display: block;
+  margin-top: 4px;
+}
+
+.theme-choice input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.theme-choice:has(input:focus-visible) {
+  outline: 2px dashed #a78bfa;
+  outline-offset: 3px;
+}
+
+.theme-choice .theme-swatch-dark {
+  background: linear-gradient(135deg, #130c20, #6d28d9);
+}
+
+.theme-choice .theme-swatch-light {
+  background: linear-gradient(135deg, #fff, #c4b5fd);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg-base: #fcfaff;
+  --bg-elevated: #f4edff;
+  --bg-card: #ffffff;
+  --text-primary: #27143e;
+  --text-muted: #5d4775;
+  --border-subtle: rgba(109, 40, 217, 0.22);
+  --shadow-card: 0 12px 30px rgba(76, 29, 149, 0.12);
+}
+
+html[data-theme="light"] .settings-card,
+html[data-theme="light"] .theme-choice {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .theme-choice small {
+  color: var(--text-muted);
+}
+/* Ícones sobre fundos roxos no tema claro */
+html[data-theme="light"] .stat-card-icon,
+html[data-theme="light"] .choice-icon {
+  color: #fff;
+}
+html[data-theme="light"] .avatar-preview > i,
+html[data-theme="light"] .achievement-icon > i {
+  color: #fff;
+}
+
+/* Ícone da página selecionada no menu lateral */
+html[data-theme="light"] .sidebar-link.is-active i {
+  color: #6d28d9;
+}
+html[data-theme="light"] .hero-page .eyebrow {
+  color: #6d28d9;
+}
+html[data-theme="light"] .hero-orbit-core {
+  color: #fff;
+}

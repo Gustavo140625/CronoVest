@@ -327,3 +327,15 @@
   outline: 2px solid #b79aff;
   outline-offset: 3px;
 }
+html[data-theme="light"] #form-add-goal select,
+html[data-theme="light"] #goal-target {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  color-scheme: light;
+}
+
+html[data-theme="light"] #form-add-goal select option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}

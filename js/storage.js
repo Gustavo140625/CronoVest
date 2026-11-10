@@ -438,3 +438,11 @@ function startNewWeek(scheduleId) {
 
   return true;
 }
+const SITE_THEME_KEY = 'cronovest_theme';
+
+function applySiteTheme(theme) {
+  document.documentElement.dataset.theme =
+    theme === 'light' ? 'light' : 'dark';
+}
+
+applySiteTheme(localStorage.getItem(SITE_THEME_KEY));
